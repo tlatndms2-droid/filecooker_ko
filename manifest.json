@@ -3,7 +3,7 @@
 	"name": "File Cooker",
 	"version": "3.2.1",
 	"minAppVersion": "1.12.3",
-	"description": "Deal multi notes from Search results、current file、Dataview query string...",
+	"description": "검색 결과, 현재 노트의 링크, Dataview 쿼리 등을 이용해 여러 노트를 한 번에 처리합니다.",
 	"author": "iuian",
 	"authorUrl": "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA4MjQ1ODIzMA==&scene=124#wechat_redirect",
 	"isDesktopOnly": false

@@ -15,7 +15,7 @@ export const EN: Record<string, string> = {
 	// ── 设置（main.ts / backup-settings / ai-settings）──
 	'File Cooker 设置': 'File Cooker Settings',
 	'界面语言': 'Interface language',
-	'跟随 Obsidian 界面语言；也可固定为中文或英文。': 'Follow the Obsidian interface language, or force Chinese/English.',
+	'跟随 Obsidian 界面语言；也可固定为中文、英文或韩文。': 'Follow the Obsidian interface language, or choose Chinese, English, or Korean.',
 	'自动（跟随 Obsidian）': 'Auto (follow Obsidian)',
 	'中文': 'Chinese',
 	'英文': 'English',

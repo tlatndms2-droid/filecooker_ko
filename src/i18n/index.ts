@@ -10,15 +10,16 @@
 
 import { getLanguage } from 'obsidian';
 import { EN } from './en';
+import { KO } from './ko';
 
-export type Locale = 'zh' | 'en';
-export type LanguageSetting = 'auto' | 'zh' | 'en';
+export type Locale = 'zh' | 'en' | 'ko';
+export type LanguageSetting = 'auto' | Locale;
 
 let languageSetting: LanguageSetting = 'auto';
 
 /** onload 时注入设置中的语言偏好；设置变更后再次调用即可立即生效。 */
 export function initI18n(setting: LanguageSetting | undefined): void {
-	languageSetting = setting === 'zh' || setting === 'en' ? setting : 'auto';
+	languageSetting = setting === 'zh' || setting === 'en' || setting === 'ko' ? setting : 'auto';
 }
 
 /** 当前生效语言：设置覆盖 > Obsidian 界面语言 > 中文（插件源语言，完全检测不到时）。 */
@@ -57,7 +58,8 @@ function readAppLanguage(): string {
 function detectLocale(): Locale {
 	const lang = readAppLanguage();
 	if (lang === '') return 'zh';
-	return lang.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+	const base = lang.toLowerCase().split('-')[0];
+	return base === 'zh' || base === 'ko' ? base : 'en';
 }
 
 /**
@@ -66,10 +68,9 @@ function detectLocale(): Locale {
  */
 export function t(key: string, vars?: Record<string, string | number>): string {
 	let text = key;
-	if (getLocale() === 'en') {
-		const entry = EN[key];
-		if (entry !== undefined) text = entry;
-	}
+	const locale = getLocale();
+	if (locale === 'ko') text = KO[key] ?? EN[key] ?? key;
+	else if (locale === 'en') text = EN[key] ?? key;
 	if (!vars) return text;
 	return text.replace(/\{(\w+)\}/g, (raw, name: string) =>
 		Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : raw

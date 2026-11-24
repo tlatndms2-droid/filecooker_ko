@@ -90,11 +90,12 @@ class FileCookerSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName(t('界面语言'))
-			.setDesc(t('跟随 Obsidian 界面语言；也可固定为中文或英文。'))
+			.setDesc(t('跟随 Obsidian 界面语言；也可固定为中文、英文或韩文。'))
 			.addDropdown(dropdown => dropdown
 				.addOption('auto', t('自动（跟随 Obsidian）'))
 				.addOption('zh', t('中文'))
 				.addOption('en', t('英文'))
+				.addOption('ko', '한국어')
 				.setValue(this.plugin.settings.language)
 				.onChange(async (value) => {
 					this.plugin.settings.language = value as LanguageSetting;
